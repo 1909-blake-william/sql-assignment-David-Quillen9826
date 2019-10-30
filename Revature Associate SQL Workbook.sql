@@ -20,33 +20,41 @@ Task – Insert two new records into Genre table
         INSERT INTO Genre (GenreId, Name) VALUES (26, 'Death Metal');
         INSERT INTO Genre (GenreId, Name) VALUES (27, 'Alternative Metal');
 Task – Insert two new records into Employee table
-
+        INSERT INTO Employee (EmployeeId, LastName, FirstName, Title, ReportsTo, BirthDate, HireDate, Address, City, State, Country, PostalCode, Phone, Fax, Email) VALUES (9, 'Smith', 'John', 'IT Staff', 6, TO_DATE('1970-4-18 00:00:00','yyyy-mm-dd hh24:mi:ss'), TO_DATE('2007-9-11 00:00:00','yyyy-mm-dd hh24:mi:ss'), '51 Main ST', 'Baltimore', 'MD', 'US', '21201', '+1 (403) 467-4721', '+1 (403) 467-8773', 'john@chinookcorp.com');
+        INSERT INTO Employee (EmployeeId, LastName, FirstName, Title, ReportsTo, BirthDate, HireDate, Address, City, State, Country, PostalCode, Phone, Fax, Email) VALUES (10, 'Smith', 'Rebecca', 'IT Staff', 6, TO_DATE('1967-8-24 00:00:00','yyyy-mm-dd hh24:mi:ss'), TO_DATE('2007-6-23 00:00:00','yyyy-mm-dd hh24:mi:ss'), '51 Main ST', 'Baltimore', 'MD', 'US', '21201', '+1 (403) 467-4722', '+1 (403) 467-8774', 'rebecca@chinookcorp.com');
 Task – Insert two new records into Customer table
-
+        INSERT INTO Customer (CustomerId, FirstName, LastName, Address, City, State, Country, PostalCode, Phone, Email, SupportRepId) 
+        VALUES (60, 'Blake', 'Kruppa', '2441 Reston Pk', 'Reston', 'VA', 'USA', '20170', '+1 (443) 388-9241', 'blakekruppa@gmail.com', 5);
+        INSERT INTO Customer (CustomerId, FirstName, LastName, Address, City, State, Country, PostalCode, Phone, Email, SupportRepId) 
+        VALUES (61, 'Alex', 'Bradley', '13 Fredrick Rd', 'Ellicott City', 'MD', 'USA', '21042', '+1 (443) 388-7564', 'AlexBradley3@gmail.com', 5);
 2.4 UPDATE
 Task – Update Aaron Mitchell in Customer table to Robert Walter
-
+        UPDATE customer SET firstname = 'Robert', lastname = 'Walter' WHERE firstname = 'Aaron' And lastname = 'Mitchell'
 Task – Update name of artist in the Artist table “Creedence Clearwater Revival” to “CCR”
-
+        UPDATE artist SET name = 'CCR' WHERE name = 'Creedence Clearwater Revival'
 2.5 LIKE
 Task – Select all invoices with a billing address like “T%”
-
+        SELECT * FROM invoice WHERE billingaddress LIKE 'T%'
 2.6 BETWEEN
 Task – Select all invoices that have a total between 15 and 50
-
+        SELECT * FROM invoice WHERE total BETWEEN 15 and 50
 Task – Select all employees hired between 1st of June 2003 and 1st of March 2004
-
+        SELECT * FROM employee WHERE hiredate BETWEEN TO_DATE('2003-6-1 00:00:00','yyyy-mm-dd hh24:mi:ss') and TO_DATE('2004-3-1 00:00:00','yyyy-mm-dd hh24:mi:ss')
 2.7 DELETE
 Task – Delete a record in Customer table where the name is Robert Walter (There may be constraints that rely on this, find out how to resolve them).
-
+        DELETE FROM customer WHERE firstname = 'Robert' AND lastname = 'Walter'
 3.0 SQL Functions
 In this section you will be using the Oracle system functions, as well as your own functions, to perform various actions against the database
 3.1 System Defined Functions
 Task – Create a function that returns the current time.
+        SELECT CURRENT_TIMESTAMP
 Task – create a function that returns the length of a mediatype from the mediatype table
+        SELECT LENGTH(name) from mediatype
 3.2 System Defined Aggregate Functions
 Task – Create a function that returns the average total of all invoices
+        SELECT AVG(total) from invoice
 Task – Create a function that returns the most expensive track
+        SELECT max(unitprice) from track
 3.3 User Defined Scalar Functions
 Task – Create a function that returns the average price of invoiceline items in the invoiceline table
 3.4 User Defined Table Valued Functions
